@@ -2,6 +2,7 @@
 	grid-area: header;
 	height: 40px;
 	background-color: #A3E6D8;
+	text-align: center;
 }
 
 .header h1 {
