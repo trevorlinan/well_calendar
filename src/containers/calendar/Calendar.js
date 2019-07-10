@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './Calendar.css';
 
-// plugins
-import moment from 'moment';
-
 // components
 import Header from '../header/Header';
 import TimeSlot from '../../components/timeslot/TimeSlot';
@@ -11,9 +8,10 @@ import TimeSlot from '../../components/timeslot/TimeSlot';
 // helpers
 import { getSelectionTimesByMinutes } from '../../utils'
 
-// Plugins
+// plugins
 import InfiniteCalendar from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
+import moment from 'moment';
 
 class Calendar extends Component {
     constructor () {
