@@ -5,11 +5,7 @@ import './App.css';
 import Calendar from './containers/calendar/Calendar'
 
 function App() {
-  return (
-    <div className="App">
-      <Calendar />
-    </div>
-  );
+  return <Calendar />;
 }
 
 export default App;
