@@ -1,0 +1,11 @@
+.time-slot {
+	grid-area: time-slot;
+	height: 50px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	position: relative;
+	margin-top: 5vh;
+	left: 5vw;
+	width: 40vw;
+}
