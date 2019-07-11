@@ -1,11 +1,39 @@
 .time-slot {
 	grid-area: time-slot;
-	height: 50px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-flow: column nowrap;
+	position: relative;
+	left: 5vw;
+	width: 40vw;
+}
+
+.time-slot h2 {
+	width: 100%;
+	text-align: center;
+	color: #808080;
+}
+
+.time-slot .time-selectors {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	position: relative;
-	margin-top: 5vh;
-	left: 5vw;
-	width: 40vw;
+	width: 100%;
+	z-index: 1;
+}
+
+.time-slot .schedule {
+	position: relative;
+	font-size: 16px;
+	width: 40%;
+	margin: 5vh 0;
+	padding: 10px;
+	border-radius: 20px;
+	color: #fff;
+	background-color: #FC7137;
+	border: none;
+	cursor: pointer;
+	outline: none;
 }

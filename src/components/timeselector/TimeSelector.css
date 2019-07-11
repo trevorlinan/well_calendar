@@ -19,6 +19,7 @@
 	left: 0;
 	max-height: 50vh;
 	border: 1px solid #e6e6e6;
+	background-color: #fff;
 	border-radius: 20px;
 	overflow-y: auto;
 }

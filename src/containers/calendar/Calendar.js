@@ -6,7 +6,8 @@ import Header from '../header/Header';
 import TimeSlot from '../../components/timeslot/TimeSlot';
 
 // helpers
-import { getSelectionTimesByMinutes } from '../../utils'
+import { getSelectionTimesByMinutes } from '../../utils';
+import config from '../../config';
 
 // plugins
 import InfiniteCalendar from 'react-infinite-calendar';
@@ -24,12 +25,15 @@ class Calendar extends Component {
     }
 
     componentDidMount = () => {
-        this.updateSelectedDate(moment(new Date()))
+        this.updateSelectedDate(moment(new Date()), true)
     }
 
-    updateSelectedDate = date => {
+    updateSelectedDate = (date, today) => {
+        const { range: { start, end } } = config;
         var unixTimestamp = moment(date).unix() * 1000;
-        var selectionTimes = getSelectionTimesByMinutes(15, unixTimestamp);
+        var unixRangeTimestamp = today ? moment(moment(unixTimestamp).startOf("day")).unix() * 1000 : unixTimestamp;
+        var range = { start: unixRangeTimestamp + start, end: unixRangeTimestamp + end };
+        var selectionTimes = getSelectionTimesByMinutes(15, unixTimestamp, range);
         this.setState({ selectionTimes })
     }
 

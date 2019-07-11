@@ -11,7 +11,7 @@ const TimeSelector = props => {
                     className="option"
                     key={ timestamp }
                     onClick={() => { 
-                        props.updateDisplayTime(displayTime)
+                        props.updateTime(displayTime, timestamp)
                         updateDropdown(!show)
                     }}>
                     { displayTime }
@@ -22,7 +22,7 @@ const TimeSelector = props => {
 
     return (
         <div className="time-selector">
-            <div className="display" onClick={() => { updateDropdown(!show) }}>
+            <div className="display" onClick={() => { if (props.times.length) updateDropdown(!show) }}>
                 { props.displayTime }
             </div>
             <div className="dropdown" style={{ 'display': show ? 'block' : 'none' }}>

@@ -1,18 +1,18 @@
 .calendar {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
     grid-template-rows: auto;
     grid-template-areas: 
         "header header"
         "infinite-calendar time-slot";
 }
 
+/* infinite calendar */
 .infinite-calendar {
     grid-area: infinite-calendar;
     position: relative;
-    top: 5vh;
-    left: 10vw;
-    width: 30vw !important;
+    left: 30%;
+    width: 60% !important;
     max-height: 90vh !important;
     border-radius: 20px !important;
 }
@@ -38,13 +38,6 @@
     border-radius: 0 0 20px 20px;
 }
 
-.time {
-    width: 200px;
-}
-
-.time .option {
-    height: 40px;
-    line-height: 40px;
-    margin: 0;
-    border: 1px solid #666;
+.infinite-calendar .Cal__MonthList__root {
+    height: 60vh !important;
 }
