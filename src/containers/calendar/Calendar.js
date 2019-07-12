@@ -48,12 +48,10 @@ class Calendar extends Component {
 
     updateSelectionTimes = date => {
         let times = this.getSelectionTimes(date)
-        console.log(times);
         this.setState({ selectionTimes: times, selectedDate: date })
     }
 
     addAppointment = appt => {
-        console.log('addappt', appt)
         this.setState(state => {
             state.appointments = [...this.state.appointments, appt];
             state.selectionTimes = this.getSelectionTimes(this.state.selectedDate);
@@ -64,7 +62,6 @@ class Calendar extends Component {
     render () {
         const { selectionTimes: times, appointments } = this.state;
         const { updateSelectionTimes, addAppointment } = this;
-        console.log('render calendar');
 
         return (
             <div className="calendar">

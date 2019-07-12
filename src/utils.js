@@ -29,7 +29,17 @@ export const getSelectionTimesByMinutes = (increment, timestamp, { start, end },
 }
 
 export const getAvailableEndTimes = (startTime, times) => {
-    return times.filter(obj => {
+    let exit = false;
+    return times.filter((obj, ind) => {
+        if (obj.timestamp < startTime) return false;
+        if ((ind + 1 < times.length && !times[ind + 1].available) || exit) {
+            if (!exit) {
+                exit = true;
+                return obj.timestamp > startTime;
+            }
+            exit = true;
+            return false
+        }
         return obj.timestamp > startTime;
     })
 }

@@ -49,7 +49,6 @@ class TimeSlot extends Component  {
     render () {
         const { start, start: { displayTime: startTime, timestamp: unixStart }, end, end: { displayTime: endTime, timestamp: unixEnd } } = this.state;
         const { times } = this.props;
-        console.log(startTime, unixStart, endTime, unixEnd)
 
         return (
             <div className="time-slot">
