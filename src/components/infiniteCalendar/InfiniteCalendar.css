@@ -1,5 +1,6 @@
 .infinite-calendar-wrapper h2 {
     text-align: center;
+    margin-left: 20%;
 }
 
 .infinite-calendar-wrapper .infinite-calendar {
@@ -33,12 +34,16 @@
 }
 
 .infinite-calendar-wrapper .infinite-calendar .Cal__MonthList__root {
-    height: 30vw !important;
+    height: 25vw !important;
 }
 
 @media only screen and (max-width : 768px) {
     .infinite-calendar-wrapper {
         padding-bottom: 5vh;
+    }
+
+    .infinite-calendar-wrapper h2 {
+        margin-left: 0;
     }
 
 	.infinite-calendar-wrapper .infinite-calendar {
