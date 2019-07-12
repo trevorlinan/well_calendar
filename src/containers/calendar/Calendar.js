@@ -33,11 +33,11 @@ class Calendar extends Component {
 
     getSelectionTimes = date => {
         const { range: { start, end } } = config;
-        let isToday = moment(new Date()).isSame(moment(date), 'days');
-        let unixTimestamp = moment(isToday ? new Date() : date).unix() * 1000;
-        let unixRangeTimestamp = isToday ? moment(moment(unixTimestamp).startOf("day")).unix() * 1000 : unixTimestamp;
-        let range = { start: unixRangeTimestamp + start, end: unixRangeTimestamp + end };
-        let existingTimes = this.state.appointments.map(appt => {
+        const isToday = moment(new Date()).isSame(moment(date), 'days');
+        const unixTimestamp = moment(isToday ? new Date() : date).unix() * 1000;
+        const unixRangeTimestamp = isToday ? moment(moment(unixTimestamp).startOf("day")).unix() * 1000 : unixTimestamp;
+        const range = { start: unixRangeTimestamp + start, end: unixRangeTimestamp + end }; // start and end times for selection list
+        const existingTimes = this.state.appointments.map(appt => {
             return {
                 start: appt.start.timestamp,
                 end: appt.end.timestamp
@@ -47,7 +47,7 @@ class Calendar extends Component {
     }
 
     updateSelectionTimes = date => {
-        let times = this.getSelectionTimes(date)
+        const times = !moment(date).isBefore(new Date(), 'days') ? this.getSelectionTimes(date) : []; // verifys date is current or in future
         this.setState({ selectionTimes: times, selectedDate: date })
     }
 
