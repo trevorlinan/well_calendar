@@ -19,6 +19,7 @@ class Appointments extends Component {
                         <p><span className="type">Start Time:</span> { appt.start.displayTime }</p>
                         <p><span className="type">End Time:</span> { appt.end.displayTime }</p>
                     </div>
+                    <div className="remove" onClick={() => this.props.deleteAppointment(appt.start.timestamp)}>Remove</div>
                 </div>
             )
         })

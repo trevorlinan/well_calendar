@@ -59,16 +59,26 @@ class Calendar extends Component {
         })
     }
 
+    deleteAppointment = timestamp => {
+        const appts = [ ...this.state.appointments ];
+        const appointments = appts.filter(appt => appt.start.timestamp !== timestamp);
+        this.setState(state => {
+            state.appointments = appointments;
+            state.selectionTimes = this.getSelectionTimes(this.state.selectedDate);
+            return state;
+        })
+    }
+
     render () {
         const { selectionTimes: times, appointments } = this.state;
-        const { updateSelectionTimes, addAppointment } = this;
+        const { updateSelectionTimes, addAppointment, deleteAppointment } = this;
 
         return (
             <div className="calendar">
                 <Header />
                 <InfiniteCalendar { ...{ updateSelectionTimes } } />
                 <TimeSlot { ...{ times, addAppointment, updateSelectionTimes } } />
-                <Appointments { ...{ appointments } } />
+                <Appointments { ...{ appointments, deleteAppointment } } />
             </div>
         )
     }

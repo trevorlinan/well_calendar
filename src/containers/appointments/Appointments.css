@@ -44,8 +44,25 @@
     font-weight: 700;
 }
 
+.appointments .appointment .remove {
+    display: none;
+    position: absolute;
+    right: 2vw;
+    color: #e64545;
+    cursor: pointer;
+}
+
+.appointments .appointment:hover .remove {
+    display: block;
+}
+
 @media only screen and (max-width : 768px) {
     .appointments {
         width: 90vw;
+    }
+
+    .appointments .appointment .remove {
+        display: block;
+        right: 4vw;
     }
 }
