@@ -5,8 +5,8 @@
 .infinite-calendar-wrapper .infinite-calendar {
     grid-area: infinite-calendar;
     position: relative;
-    left: 30%;
-    width: 60% !important;
+    left: 20%;
+    width: 80% !important;
     max-height: 90vh !important;
     border-radius: 20px !important;
 }
@@ -33,5 +33,22 @@
 }
 
 .infinite-calendar-wrapper .infinite-calendar .Cal__MonthList__root {
-    height: 60vh !important;
+    height: 30vw !important;
+}
+
+@media only screen and (max-width : 768px) {
+    .infinite-calendar-wrapper {
+        padding-bottom: 5vh;
+    }
+
+	.infinite-calendar-wrapper .infinite-calendar {
+        left: 5vw;
+        width: 90vw !important;
+        max-height: 90vh !important;
+        border-radius: 20px !important;
+    }
+
+    .infinite-calendar-wrapper .infinite-calendar .Cal__MonthList__root {
+        height: 50vh !important;
+    }
 }

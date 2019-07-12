@@ -6,7 +6,7 @@
 	flex-flow: column nowrap;
 	position: relative;
 	left: 5vw;
-	width: 40vw;
+	width: 45vw;
 }
 
 .time-slot h2 {
@@ -36,4 +36,11 @@
 	border: none;
 	cursor: pointer;
 	outline: none;
+}
+
+@media only screen and (max-width : 768px) {
+	.time-slot {
+		width: 90vw;
+		padding-bottom: 5vh;
+	}
 }

@@ -7,3 +7,16 @@
         "infinite-calendar time-slot"
         "infinite-calendar appointments";
 }
+
+@media only screen and (max-width : 768px) {
+    .calendar {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "header"
+            "infinite-calendar "
+            "time-slot"
+            "appointments";
+    }
+}

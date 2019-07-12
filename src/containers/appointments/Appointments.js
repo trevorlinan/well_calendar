@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './Appointments.css';
 
+// images
+import apptIcon from '../../appt-icon.png';
+
 // plugins
 import moment from 'moment';
 
@@ -10,9 +13,12 @@ class Appointments extends Component {
         return this.props.appointments.map(appt => {
             return (
                 <div className="appointment" key={appt.start.timestamp}>
-                    <p>When: { moment(appt.start.timestamp).format('dddd, MMMM Do, YYYY') }</p>
-                    <p>Start Time: { appt.start.displayTime }</p>
-                    <p>End Time: { appt.end.displayTime }</p>
+                    <img className="appt-icon" src={ apptIcon } alt="appointment icon" />
+                    <div>
+                        <p><span className="type">When:</span> { moment(appt.start.timestamp).format('dddd, MMMM Do, YYYY') }</p>
+                        <p><span className="type">Start Time:</span> { appt.start.displayTime }</p>
+                        <p><span className="type">End Time:</span> { appt.end.displayTime }</p>
+                    </div>
                 </div>
             )
         })

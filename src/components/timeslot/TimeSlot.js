@@ -52,14 +52,14 @@ class TimeSlot extends Component  {
 
         return (
             <div className="time-slot">
-                <h2>Choose a time</h2>
+                <h2>Choose a time:</h2>
                 <div className="time-selectors">
                     <TimeSelector 
                         times={ times } 
                         displayTime={ startTime } 
                         updateTime={ this.updateTime.bind(this, 'start')}
                     />
-                    <TimeSelector 
+                    <TimeSelector
                         times={ getAvailableEndTimes(unixStart, times) }
                         displayTime={ endTime }
                         updateTime={ this.updateTime.bind(this, 'end')} 
