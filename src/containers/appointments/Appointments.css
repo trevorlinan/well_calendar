@@ -1,0 +1,19 @@
+.appointments {
+    grid-area: appointments;
+    display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-flow: column nowrap;
+	position: relative;
+	left: 5vw;
+    width: 40vw;
+    border-top: 1px solid #808080;
+}
+
+.appointments h2 {
+    text-align: center;
+}
+
+.appointments .appointment {
+    width: 100%;
+}

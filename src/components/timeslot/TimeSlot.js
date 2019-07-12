@@ -22,6 +22,19 @@ class TimeSlot extends Component  {
         }
     }
 
+    setDefaultState = () => {
+        this.setState({
+            start: {
+                displayTime: 'Start time',
+                timestamp: null
+            },
+            end: {
+                displayTime: 'End time',
+                timestamp: null
+            }
+        })
+    }
+
     updateTime = (type, displayTime, timestamp) => {
         this.setState(state => { 
             state[type] = { displayTime, timestamp }
@@ -34,8 +47,9 @@ class TimeSlot extends Component  {
 
 
     render () {
-        const { start: { displayTime: start, timestamp: unixStart }, end: { displayTime: end } } = this.state;
+        const { start, start: { displayTime: startTime, timestamp: unixStart }, end, end: { displayTime: endTime, timestamp: unixEnd } } = this.state;
         const { times } = this.props;
+        console.log(startTime, unixStart, endTime, unixEnd)
 
         return (
             <div className="time-slot">
@@ -43,16 +57,26 @@ class TimeSlot extends Component  {
                 <div className="time-selectors">
                     <TimeSelector 
                         times={ times } 
-                        displayTime={ start } 
+                        displayTime={ startTime } 
                         updateTime={ this.updateTime.bind(this, 'start')}
                     />
                     <TimeSelector 
                         times={ getAvailableEndTimes(unixStart, times) }
-                        displayTime={ end }
+                        displayTime={ endTime }
                         updateTime={ this.updateTime.bind(this, 'end')} 
                     />
                 </div>
-                <button className="schedule">Schedule Appointment</button>
+                <button 
+                    className="schedule"
+                    onClick={() => {
+                        if (unixEnd) {
+                            this.props.addAppointment({ start, end })
+                            this.setDefaultState();
+                        }
+                    }}
+                >
+                    Schedule Appointment
+                </button>
             </div>
         )
     }

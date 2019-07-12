@@ -1,0 +1,37 @@
+.infinite-calendar-wrapper h2 {
+    text-align: center;
+}
+
+.infinite-calendar-wrapper .infinite-calendar {
+    grid-area: infinite-calendar;
+    position: relative;
+    left: 30%;
+    width: 60% !important;
+    max-height: 90vh !important;
+    border-radius: 20px !important;
+}
+
+.infinite-calendar-wrapper .infinite-calendar .Cal__Header__root {
+    border-radius: 20px 20px 0 0;
+    background-color: #A3E6D8 !important;
+}
+
+.infinite-calendar-wrapper .infinite-calendar .Cal__Weekdays__root {
+    background-color: #FC7137 !important;
+}
+
+.infinite-calendar-wrapper .infinite-calendar .Cal__Day__selection {
+    background-color: #A3E6D8 !important;
+}
+
+.infinite-calendar-wrapper .infinite-calendar .Cal__Day__today {
+    color: #FC7137 !important;
+}
+
+.infinite-calendar-wrapper .infinite-calendar .Cal__Container__listWrapper {
+    border-radius: 0 0 20px 20px;
+}
+
+.infinite-calendar-wrapper .infinite-calendar .Cal__MonthList__root {
+    height: 60vh !important;
+}

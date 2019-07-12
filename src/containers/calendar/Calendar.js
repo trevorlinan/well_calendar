@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import './Calendar.css';
 
-// components
+//containers
 import Header from '../header/Header';
+import Appointments from '../appointments/Appointments';
+
+// components
 import TimeSlot from '../../components/timeslot/TimeSlot';
+import InfiniteCalendar from '../../components/infiniteCalendar/InfiniteCalendar';
+
 
 // helpers
 import { getSelectionTimesByMinutes } from '../../utils';
 import config from '../../config';
 
 // plugins
-import InfiniteCalendar from 'react-infinite-calendar';
-import 'react-infinite-calendar/styles.css';
 import moment from 'moment';
 
 class Calendar extends Component {
@@ -19,36 +22,56 @@ class Calendar extends Component {
         super();
         this.state = {
             appointments: [],
-            selectedDate: new Date().getTime(),
-            selectionTimes: []
+            selectionTimes: [],
+            selectedDate: new Date()
         }
     }
 
     componentDidMount = () => {
-        this.updateSelectedDate(moment(new Date()), true)
+        this.updateSelectionTimes(this.state.selectedDate);
     }
 
-    updateSelectedDate = (date, today) => {
+    getSelectionTimes = date => {
         const { range: { start, end } } = config;
-        var unixTimestamp = moment(date).unix() * 1000;
-        var unixRangeTimestamp = today ? moment(moment(unixTimestamp).startOf("day")).unix() * 1000 : unixTimestamp;
-        var range = { start: unixRangeTimestamp + start, end: unixRangeTimestamp + end };
-        var selectionTimes = getSelectionTimesByMinutes(15, unixTimestamp, range);
-        this.setState({ selectionTimes })
+        let isToday = moment(new Date()).isSame(moment(date), 'days');
+        let unixTimestamp = moment(isToday ? new Date() : date).unix() * 1000;
+        let unixRangeTimestamp = isToday ? moment(moment(unixTimestamp).startOf("day")).unix() * 1000 : unixTimestamp;
+        let range = { start: unixRangeTimestamp + start, end: unixRangeTimestamp + end };
+        let existingTimes = this.state.appointments.map(appt => {
+            return {
+                start: appt.start.timestamp,
+                end: appt.end.timestamp
+            }
+        })
+        return getSelectionTimesByMinutes(15, unixTimestamp, range, existingTimes);
+    }
+
+    updateSelectionTimes = date => {
+        let times = this.getSelectionTimes(date)
+        console.log(times);
+        this.setState({ selectionTimes: times, selectedDate: date })
+    }
+
+    addAppointment = appt => {
+        console.log('addappt', appt)
+        this.setState(state => {
+            state.appointments = [...this.state.appointments, appt];
+            state.selectionTimes = this.getSelectionTimes(this.state.selectedDate);
+            return state;
+        })
     }
 
     render () {
-        const { selectionTimes: times } = this.state;
+        const { selectionTimes: times, appointments } = this.state;
+        const { updateSelectionTimes, addAppointment } = this;
+        console.log('render calendar');
 
         return (
             <div className="calendar">
                 <Header />
-                <InfiniteCalendar 
-                    className="infinite-calendar"
-                    today={ new Date() }
-                    onSelect={ this.updateSelectedDate }
-                />
-                <TimeSlot { ...{ times }} />
+                <InfiniteCalendar { ...{ updateSelectionTimes } } />
+                <TimeSlot { ...{ times, addAppointment, updateSelectionTimes } } />
+                <Appointments { ...{ appointments } } />
             </div>
         )
     }
