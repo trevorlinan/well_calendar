@@ -68,7 +68,7 @@ class TimeSlot extends Component  {
                 <button 
                     className="schedule"
                     onClick={() => {
-                        if (unixEnd) {
+                        if (unixStart && unixEnd) {
                             this.props.addAppointment({ start, end })
                             this.setDefaultState();
                         }
