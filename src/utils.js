@@ -10,13 +10,13 @@ export const formatHourMinutePeriod = timestamp => {
 // existing times = existing appointments [{ start: ttimestamp, end: timestamp }]
 export const getSelectionTimesByMinutes = (increment, timestamp, { start, end }, existingTimes) => {
     const timesCount = Math.round(1440 / increment); 
-    const mod = moment(timestamp).minute() % increment; // get remaning minutes to next increment
-    if (mod !== 0) timestamp += (increment - mod) * 60 * 1000; // offset to select next time incrememnt if current time is in between
+    const minute = moment(timestamp).startOf('minute');
+    const mod = parseInt(minute.format('m')) % increment; // get remaning minutes to next increment
+    var currentTimestamp = moment(minute.add(increment - mod, 'minute')).unix() *1000 // get timestamp of next consecutive selection
 
-    return [ ...new Array(timesCount) ].reduce((times) => {
-        timestamp += increment * 60 * 1000
+    return [ ...new Array(timesCount) ].reduce((times, val, ind) => {
+        timestamp = (ind === 0 && mod !== 0) ? currentTimestamp : timestamp + (increment * 60 * 1000)
         if (timestamp >= start && timestamp <= end) {
-
             const timeNotAvailable = existingTimes.find(time => {
                 return timestamp === time.start || timestamp === time.end || (timestamp > time.start && timestamp < time.end)
             });
@@ -35,6 +35,7 @@ export const getSelectionTimesByMinutes = (increment, timestamp, { start, end },
 // startTime = unix date
 // times = all selection times generated
 export const getAvailableEndTimes = (startTime, times) => {
+    if (!startTime) return [];
     let exit = false;
     return times.filter((obj, ind) => {
         if (obj.timestamp < startTime) return false;
