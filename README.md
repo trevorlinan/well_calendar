@@ -13,7 +13,9 @@
 
 ### Existing issues:
 - Boundary issue: Current date end time. (4:45 pm should be 5:00 pm on current date)
+	- FIXED: previous calculation did not reconcile seconds as part of timestamp, rounding down to 0 seconds solved timestamp comparison
 - Boundary issue: When full range of times are selected, end time displays "8:00 am", although not selectable, it should be empty.
+	- FIXED: If start time is not selected, end time generation function will now return empty array
 
 ### To dos:
 - Sort appoinment list by date
