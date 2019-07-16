@@ -19,6 +19,7 @@
 
 ### To dos:
 - Sort appoinment list by date
+	- UPDATE: Added sort by date with a small change in the UI
 
 ### User Flow:
 - **User chooses a date**
