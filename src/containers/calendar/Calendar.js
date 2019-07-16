@@ -60,8 +60,7 @@ class Calendar extends Component {
     }
 
     deleteAppointment = timestamp => {
-        const appts = [ ...this.state.appointments ];
-        const appointments = appts.filter(appt => appt.start.timestamp !== timestamp);
+        const appointments = this.state.appointments.filter(appt => appt.start.timestamp !== timestamp);
         this.setState(state => {
             state.appointments = appointments;
             state.selectionTimes = this.getSelectionTimes(this.state.selectedDate);
