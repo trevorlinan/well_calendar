@@ -15,6 +15,10 @@
     text-align: center;
 }
 
+.appointments .date-heading {
+    width: 100%;
+}
+
 .appointments .appointment {
     position: relative;
     width: 100%;
